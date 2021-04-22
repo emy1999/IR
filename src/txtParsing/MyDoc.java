@@ -6,10 +6,10 @@ public class MyDoc {
     private String summary;
     private String body;
 
-    public MyDoc(String title, String summary, String mesh) {
+    public MyDoc(String title, String summary, String body) {
         this.title = title;
         this.summary = summary;
-        this.body = mesh;
+        this.body = body;
     }
 
     @Override
