@@ -15,7 +15,11 @@ import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 
 import java.io.IOException;
+import java.nio.file.DirectoryStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -29,8 +33,23 @@ public class CreateIndex {
      *
      */
     public CreateIndex() throws Exception{
+        String path = "/Users/emiliadan/Downloads/Anaktisi/lisa";
+        Path dirPath = Paths.get(path);
+        ArrayList<String> txtfiles = new ArrayList<>();
+        try (DirectoryStream<Path> files = Files.newDirectoryStream(dirPath)) {
+            for(Path file: files){
+                if(!file.getFileName().toString().startsWith(".")) {
+                    txtfiles.add("/Users/emiliadan/Downloads/Anaktisi/lisa/" + file.getFileName().toString());
 
-        String txtfile =  "LISA//LISA0.501"; //txt file to be parsed and indexed
+
+                }
+            }
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        String txtfile =  "/Users/emiliadan/Downloads/Anaktisi/lisa/LISA0.001"; //txt file to be parsed and indexed
         String indexLocation = ("Index"); //define were to store the index
 
         Date start = new Date();
@@ -54,11 +73,12 @@ public class CreateIndex {
             IndexWriter indexWriter = new IndexWriter(dir, iwc);
 
             // parse txt document using TXT parser and index it
-            List<MyDoc> docs = TXTParsing.parse(txtfile);
-            for (MyDoc doc : docs){
-                indexDoc(indexWriter, doc);
-            }
-
+            //for (String lisa : txtfiles) {
+                List<MyDoc> docs = TXTParsing.parse(txtfile);
+                for (MyDoc doc : docs) {
+                    indexDoc(indexWriter, doc);
+                }
+            //}
             indexWriter.close();
 
             Date end = new Date();

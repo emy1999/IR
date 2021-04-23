@@ -29,7 +29,8 @@ public class TXTParsing {
 
                     int summary_start = title_end + 2;
 
-                    int summary_end = doc.indexOf("\r\n\r\n", summary_start);
+
+                    int summary_end = doc.indexOf("\r\n", summary_start);
                     adoc[1] = doc.substring(summary_start, summary_end);
 
                     int body_start = summary_end + 4;
