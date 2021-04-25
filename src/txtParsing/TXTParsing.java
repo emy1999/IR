@@ -29,12 +29,14 @@ public class TXTParsing {
 
                     int summary_start = title_end + 2;
 
+                    int summary_end = doc.indexOf(".", summary_start);
+                    adoc[1] = doc.substring(summary_start, summary_end+1);
 
-                    int summary_end = doc.indexOf("\r\n", summary_start);
-                    adoc[1] = doc.substring(summary_start, summary_end);
-
-                    int body_start = summary_end + 4;
-                    adoc[2] = doc.substring(body_start);
+                    int body_start = summary_end+1;
+                    while (isWhitespace(doc.charAt(body_start))){
+                        body_start++;
+                    }
+                    adoc[2] = doc.substring(body_start).trim();
 
                     MyDoc mydoc = new MyDoc(adoc[0], adoc[1], adoc[2]);
 
