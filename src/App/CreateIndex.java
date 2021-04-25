@@ -33,23 +33,8 @@ public class CreateIndex {
      *
      */
     public CreateIndex() throws Exception{
-        String path = "/Users/emiliadan/Downloads/Anaktisi/lisa";
-        Path dirPath = Paths.get(path);
-        ArrayList<String> txtfiles = new ArrayList<>();
-        try (DirectoryStream<Path> files = Files.newDirectoryStream(dirPath)) {
-            for(Path file: files){
-                if(!file.getFileName().toString().startsWith(".")) {
-                    txtfiles.add("/Users/emiliadan/Downloads/Anaktisi/lisa/" + file.getFileName().toString());
+        ArrayList<String> files = readFolderContents("LISA");
 
-
-                }
-            }
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        String txtfile =  "/Users/emiliadan/Downloads/Anaktisi/lisa/LISA0.001"; //txt file to be parsed and indexed
         String indexLocation = ("Index"); //define were to store the index
 
         Date start = new Date();
@@ -73,12 +58,12 @@ public class CreateIndex {
             IndexWriter indexWriter = new IndexWriter(dir, iwc);
 
             // parse txt document using TXT parser and index it
-            //for (String lisa : txtfiles) {
-                List<MyDoc> docs = TXTParsing.parse(txtfile);
+            for (String filename : files) {
+                List<MyDoc> docs = TXTParsing.parse(filename);
                 for (MyDoc doc : docs) {
                     indexDoc(indexWriter, doc);
                 }
-            //}
+            }
             indexWriter.close();
 
             Date end = new Date();
@@ -127,6 +112,23 @@ public class CreateIndex {
             e.printStackTrace();
         }
 
+    }
+    private ArrayList<String> readFolderContents(String path){
+        Path dirPath = Paths.get(path);
+        ArrayList<String> txtfiles = new ArrayList<>();
+        try (DirectoryStream<Path> files = Files.newDirectoryStream(dirPath)) {
+            for(Path file: files){
+                if(!file.getFileName().toString().startsWith(".")) {
+                    txtfiles.add(path + "\\"+file.getFileName().toString());
+
+
+                }
+            }
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        return txtfiles;
     }
 
     /**
