@@ -59,6 +59,7 @@ public class CreateIndex {
 
             // parse txt document using TXT parser and index it
             for (String filename : files) {
+                System.out.println(filename);
                 List<MyDoc> docs = TXTParsing.parse(filename);
                 for (MyDoc doc : docs) {
                     indexDoc(indexWriter, doc);

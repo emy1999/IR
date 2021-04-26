@@ -59,9 +59,9 @@ public class Searcher {
             QueryParser parser = new QueryParser(field, analyzer);
 
             System.out.println(" Available queries: ");
-            List<MyQuery> parsed_queries = queryParsing("LISA/LISA.QUE");
+            List<MyQuery> parsed_queries = queryParsing("/Users/emiliadan/Downloads/Anaktisi/LISA.QUE");
             for(MyQuery query: parsed_queries){
-                System.out.println(query);
+                //System.out.println(query);
             }
 
             // read user's query from stdin
