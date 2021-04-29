@@ -1,7 +1,6 @@
 package App;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.nio.file.Paths;
 import java.util.List;
 
@@ -50,6 +49,24 @@ public class Searcher {
     private void search(IndexSearcher indexSearcher, String field){
         try{
             //read file with queries
+            File results_file;
+            FileWriter writer = null;
+            try {
+                results_file = new File("our_results.txt");
+                writer = new FileWriter(results_file);
+                if (results_file.createNewFile()) {
+                    System.out.println("File created: " + results_file.getName());
+                } else {
+                    System.out.println("File already exists.");
+                }
+
+            } catch (IOException e) {
+                System.out.println("An error occurred.");
+                e.printStackTrace();
+            }
+
+            //This line is not necessary, will be deleted later
+            writer.write("q_id"+"    "+"iter"+"    "+"docno"+"    "+"rank"+"    "+"sim"+"    "+"run_id");
 
 
             // define which analyzer to use for the normalization of user's query
@@ -93,7 +110,11 @@ public class Searcher {
                             //display results
                             for(int y=0; y<hits.length; y++){
                                 Document hitDoc = indexSearcher.doc(hits[y].doc);
-                                System.out.println("\tScore "+hits[y].score +"\ttitle="+hitDoc.get("title")+"\tcaption:"+hitDoc.get("caption")+"\tmesh:"+hitDoc.get("mesh"));
+
+                                writer.write("\n");
+
+                                writer.write(parsed_queries.get(i).getQuery_id().toString()+"       "+ 0 +"       "+hitDoc.get("title")+"    "+"0"+"    "+hits[y].score+"    "+"Lucene");
+                                System.out.println("\tScore "+hits[y].score +"\ttitle="+hitDoc.get("title"));//+"\tsummary:"+hitDoc.get("summary")+"\tbody:"+hitDoc.get("body"));
                             }
                         }
                     }
@@ -102,6 +123,7 @@ public class Searcher {
                 System.out.print(">>");
                 line = br.readLine();
             }
+            writer.close();
         } catch(Exception e){
             e.printStackTrace();
         }

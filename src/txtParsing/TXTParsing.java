@@ -44,6 +44,7 @@ public class TXTParsing {
                 }
             }
 
+
             return parsed_docs;
         } catch (Throwable err) {
             err.printStackTrace();

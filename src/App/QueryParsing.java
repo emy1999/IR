@@ -36,7 +36,7 @@ public class QueryParsing {
 
 
             }
-            //System.out.println(parsed_queries);
+            System.out.println(parsed_queries);
 
             return parsed_queries;
 

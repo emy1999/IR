@@ -34,6 +34,7 @@ public class CreateIndex {
      */
     public CreateIndex() throws Exception{
         ArrayList<String> files = readFolderContents("LISA");
+        //ArrayList<String> files = readFolderContents("/Users/emiliadan/Downloads/Anaktisi/lisa"); //for emy
 
         String indexLocation = ("Index"); //define were to store the index
 
@@ -94,11 +95,11 @@ public class CreateIndex {
             Document doc = new Document();
 
             // create the fields of the document and add them to the document
-            StoredField title = new StoredField("title", mydoc.getTitle());
+            StoredField title = new StoredField("title", mydoc.getTitle());  //changed these
             doc.add(title);
-            StoredField summary = new StoredField("summary", mydoc.getSummary());
+            StoredField summary = new StoredField("summary", mydoc.getSummary());  //changed these
             doc.add(summary);
-            StoredField body = new StoredField("body", mydoc.getBody());
+            StoredField body = new StoredField("body", mydoc.getBody());  //changed these
             doc.add(body);
             String fullSearchableText = mydoc.getTitle() + " " + mydoc.getSummary() + " " + mydoc.getBody();
             TextField contents = new TextField("contents", fullSearchableText, Field.Store.NO);
@@ -121,6 +122,7 @@ public class CreateIndex {
             for(Path file: files){
                 if(!file.getFileName().toString().startsWith(".")) {
                     txtfiles.add(path + "\\"+file.getFileName().toString());
+                    //txtfiles.add(path + "/"+file.getFileName().toString()); //for emy
 
 
                 }
