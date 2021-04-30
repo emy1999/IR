@@ -23,8 +23,8 @@ import static App.QueryParsing.queryParsing;
 
 public class Searcher {
 
-    public Searcher(){
-        try{
+    public Searcher() {
+        try {
             String indexLocation = ("Index"); //define where the index is stored
             String field = "contents"; //define which field will be searched
 
@@ -38,7 +38,7 @@ public class Searcher {
 
             //Close indexReader
             indexReader.close();
-        } catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -46,29 +46,8 @@ public class Searcher {
     /**
      * Searches the index given a specific user query.
      */
-    private void search(IndexSearcher indexSearcher, String field){
-        try{
-            //read file with queries
-            File results_file;
-            FileWriter writer = null;
-            try {
-                results_file = new File("our_results.txt");
-                writer = new FileWriter(results_file);
-                if (results_file.createNewFile()) {
-                    System.out.println("File created: " + results_file.getName());
-                } else {
-                    System.out.println("File already exists.");
-                }
-
-            } catch (IOException e) {
-                System.out.println("An error occurred.");
-                e.printStackTrace();
-            }
-
-            //This line is not necessary, will be deleted later
-            writer.write("q_id"+"    "+"iter"+"    "+"docno"+"    "+"rank"+"    "+"sim"+"    "+"run_id");
-
-
+    private void search(IndexSearcher indexSearcher, String field) {
+        try {
             // define which analyzer to use for the normalization of user's query
             Analyzer analyzer = new EnglishAnalyzer();
 
@@ -76,55 +55,66 @@ public class Searcher {
             QueryParser parser = new QueryParser(field, analyzer);
 
             System.out.println(" Available queries: ");
-            //List<MyQuery> parsed_queries = queryParsing("/Users/emiliadan/Downloads/Anaktisi/LISA.QUE");
-            List<MyQuery> parsed_queries = queryParsing("LISA/LISA.QUE");
-            for(MyQuery query: parsed_queries){
-                //System.out.println(query);
-            }
+            //List<MyQuery> available_queries = queryParsing("/Users/emiliadan/Downloads/Anaktisi/LISA.QUE");
+            List<MyQuery> available_queries = queryParsing("LISA-Queries/LISA.QUE");
 
-            // read user's query from stdin
-            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-            System.out.println("Enter the query's ID number, for multiple queries separate ID's using commas. ");
-            System.out.print(">>");
-            String line = br.readLine();
-            while(line!=null && !line.equals("")){
-                String[] input_ids = line.split(",");
+            int groups[] = {20, 30, 50};
 
-                for (String id: input_ids){
-                    System.out.println(id);
+            for (int n = 0; n < groups.length; n++) {
+                File results_file;
+                FileWriter writer = null;
+                try {
+                    results_file = new File("C:\\Users\\elena\\Desktop\\ir_local2\\src\\our_resultsElena" + "_k=" + groups[n] + ".txt");
+                    writer = new FileWriter(results_file);
+                    if (results_file.createNewFile()) {
+                        System.out.println("File created: " + results_file.getName());
+                    } else {
+                        System.out.println("File already exists.");
+                    }
 
-                    for(int i=0; i<parsed_queries.size(); i++){
-                        if(parsed_queries.get(i).getQuery_id().equals(id)){
-                            String query_body = parsed_queries.get(i).getQuery_body();
+                } catch (IOException e) {
+                    System.out.println("An error occurred.");
+                    e.printStackTrace();
+                }
 
-                            // parse the query according to QueryParser
-                            Query query = parser.parse(query_body);
-                            System.out.println("Searching for: " + query.toString(field));
+                //This line is not necessary, will be deleted later
+                writer.write("q_id" + "    " + "iter" + "    " + "docno" + "    " + "rank" + "    " + "sim" + "    " + "run_id");
 
-                            // search the index using the indexSearcher
-                            TopDocs results = indexSearcher.search(query, 100);
-                            ScoreDoc[] hits = results.scoreDocs;
-                            long numTotalHits = results.totalHits;
-                            System.out.println(numTotalHits + " total matching documents");
+                for (int i = 0; i < available_queries.size(); i++) {
+                    String query_body = available_queries.get(i).getQuery_body();
 
-                            //display results
-                            for(int y=0; y<hits.length; y++){
-                                Document hitDoc = indexSearcher.doc(hits[y].doc);
+                    // parse the query according to QueryParser
+                    Query query = parser.parse(query_body);
+                    System.out.println("Searching for: " + query.toString(field));
 
-                                writer.write("\n");
+                    // search the index using the indexSearcher
+                    TopDocs results = indexSearcher.search(query, 100);
+                    ScoreDoc[] hits = results.scoreDocs;
+                    long numTotalHits = results.totalHits;
 
-                                writer.write(parsed_queries.get(i).getQuery_id().toString()+"       "+ 0 +"       "+hitDoc.get("title")+"    "+"0"+"    "+hits[y].score+"    "+"Lucene");
-                                System.out.println("\tScore "+hits[y].score +"\ttitle="+hitDoc.get("title"));//+"\tsummary:"+hitDoc.get("summary")+"\tbody:"+hitDoc.get("body"));
-                            }
+                    System.out.println(numTotalHits + " total matching documents");
+
+
+                    //display results
+                    for (int y = 0; y < groups[n]; y++) {
+                        if (y < numTotalHits) { //in case there are not 20 hits
+
+                            Document hitDoc = indexSearcher.doc(hits[y].doc);
+
+                            writer.write("\n");
+
+                            writer.write(available_queries.get(i).getQuery_id().toString() + "       " + 0 + "       " + hitDoc.get("ID") + "    " + "0" + "    " + hits[y].score + "    " + "Lucene");
+                            System.out.println("\tScore " + hits[y].score + "\tID =" + hitDoc.get("ID"));//+"\tsummary:"+hitDoc.get("summary")+"\tbody:"+hitDoc.get("body"));
+
+
                         }
                     }
+
                 }
-                System.out.println("Enter query or 'q' to quit: ");
-                System.out.print(">>");
-                line = br.readLine();
+                writer.close();
             }
-            writer.close();
-        } catch(Exception e){
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -132,7 +122,7 @@ public class Searcher {
     /**
      * Initialize a SearcherDemo
      */
-    public static void main(String[] args){
+    public static void main(String[] args) {
         Searcher searcher = new Searcher();
     }
 }

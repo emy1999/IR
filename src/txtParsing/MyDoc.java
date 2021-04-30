@@ -2,41 +2,41 @@ package txtParsing;
 
 public class MyDoc {
 
+    private String id;
     private String title;
-    private String summary;
     private String body;
 
-    public MyDoc(String title, String summary, String body) {
+    public MyDoc(String id, String title, String body) {
+        this.id = id;
         this.title = title;
-        this.summary = summary;
         this.body = body;
     }
 
     @Override
     public String toString() {
         String ret = "MyDoc{"
+                + "\n\tID: " + id
                 + "\n\tTitle: " + title
-                + "\n\tSummary: " + summary
                 + "\n\tBody: " + body;
         return ret + "\n}";
     }
 
     //---- Getters & Setters definition ----
+    public String getID() {
+        return id;
+    }
+
+    public void setID(String title) {
+        this.id = title;
+    } //xreiazetai kapou?
+
     public String getTitle() {
         return title;
     }
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public String getSummary() {
-        return summary;
-    }
-
-    public void setSummary(String summary) {
-        this.summary = summary;
-    }
+    } //xreiazetai kapou?
 
     public String getBody() {
         return body;
@@ -44,5 +44,5 @@ public class MyDoc {
 
     public void setBody(String body) {
         this.body = body;
-    }
+    } //xreiazetai kapou?
 }

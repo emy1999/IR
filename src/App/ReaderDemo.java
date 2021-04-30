@@ -16,7 +16,7 @@ public class ReaderDemo {
     public ReaderDemo(){
         try{
 
-            String indexLocation = ("index"); //define where the index is stored
+            String indexLocation = ("Index"); //define where the index is stored
 
             //Access the index using indexReader
             IndexReader indexReader = DirectoryReader.open(FSDirectory.open(Paths.get(indexLocation))); //IndexReader is an abstract class, providing an interface for accessing an index.
@@ -42,7 +42,7 @@ public class ReaderDemo {
 
             for (int i=0; i<indexReader.maxDoc(); i++) {
                 Document doc = indexReader.document(i);
-                System.out.println("\ttitle="+doc.getField("title")+"\tsummary:"+doc.get("summary")+"\tbody:"+doc.get("body"));
+                System.out.println("\tID = "+doc.getField("ID")+"\n"+"\ttitle = "+doc.getField("title")+"\n"+"\tbody = "+doc.getField("body")+"\n");
             }
         } catch (CorruptIndexException ex) {
             ex.printStackTrace();

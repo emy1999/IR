@@ -33,7 +33,7 @@ public class CreateIndex {
      *
      */
     public CreateIndex() throws Exception{
-        ArrayList<String> files = readFolderContents("LISA");
+        ArrayList<String> files = readFolderContents("LISA-Documents");
         //ArrayList<String> files = readFolderContents("/Users/emiliadan/Downloads/Anaktisi/lisa"); //for emy
 
         String indexLocation = ("Index"); //define were to store the index
@@ -44,10 +44,12 @@ public class CreateIndex {
 
             Directory dir = FSDirectory.open(Paths.get(indexLocation));
             // define which analyzer to use for the normalization of documents
+
             Analyzer analyzer = new EnglishAnalyzer();
             // define retrieval model
             Similarity similarity = new ClassicSimilarity();
             // configure IndexWriter
+
             IndexWriterConfig iwc = new IndexWriterConfig(analyzer);
             iwc.setSimilarity(similarity);
 
@@ -95,13 +97,13 @@ public class CreateIndex {
             Document doc = new Document();
 
             // create the fields of the document and add them to the document
+            StoredField ID = new StoredField("ID", mydoc.getID());  //changed these
+            doc.add(ID);
             StoredField title = new StoredField("title", mydoc.getTitle());  //changed these
             doc.add(title);
-            StoredField summary = new StoredField("summary", mydoc.getSummary());  //changed these
-            doc.add(summary);
             StoredField body = new StoredField("body", mydoc.getBody());  //changed these
             doc.add(body);
-            String fullSearchableText = mydoc.getTitle() + " " + mydoc.getSummary() + " " + mydoc.getBody();
+            String fullSearchableText = mydoc.getTitle() + " " + mydoc.getBody(); //removed "mydoc.getID()" gia na min xrisimopoiei kai to ID otan kane search
             TextField contents = new TextField("contents", fullSearchableText, Field.Store.NO);
             doc.add(contents);
 
@@ -134,9 +136,6 @@ public class CreateIndex {
         return txtfiles;
     }
 
-    /**
-     * Initializes an IndexerDemo
-     */
     public static void main(String[] args) {
         try {
             CreateIndex indexer = new CreateIndex();

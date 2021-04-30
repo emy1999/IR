@@ -47,13 +47,13 @@ public class QueryParsing {
         }
     }
 
-    public static void main(String[] args) {
-       try {
-           //queryParsing("/Users/emiliadan/Downloads/Anaktisi/LISA.QUE");
-           queryParsing("LISA/LISA.QUE");
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-    }
+//    public static void main(String[] args) {
+//       try {
+//           //queryParsing("/Users/emiliadan/Downloads/Anaktisi/LISA.QUE");
+//           queryParsing("LISA-Queries/LISA.QUE");
+//        } catch (Exception ex) {
+//            ex.printStackTrace();
+//        }
+//    }
 
 }
