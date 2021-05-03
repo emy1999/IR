@@ -33,8 +33,8 @@ public class CreateIndex {
      *
      */
     public CreateIndex() throws Exception{
-        ArrayList<String> files = readFolderContents("LISA-Documents");
-        //ArrayList<String> files = readFolderContents("/Users/emiliadan/Downloads/Anaktisi/lisa"); //for emy
+        //ArrayList<String> files = readFolderContents("LISA-Documents");
+        ArrayList<String> files = readFolderContents("/Users/emiliadan/Downloads/Anaktisi/lisa"); //for emy
 
         String indexLocation = ("Index"); //define were to store the index
 
@@ -123,8 +123,8 @@ public class CreateIndex {
         try (DirectoryStream<Path> files = Files.newDirectoryStream(dirPath)) {
             for(Path file: files){
                 if(!file.getFileName().toString().startsWith(".")) {
-                    txtfiles.add(path + "\\"+file.getFileName().toString());
-                    //txtfiles.add(path + "/"+file.getFileName().toString()); //for emy
+                    //txtfiles.add(path + "\\"+file.getFileName().toString());
+                    txtfiles.add(path + "/"+file.getFileName().toString()); //for emy
 
 
                 }

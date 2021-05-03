@@ -70,6 +70,19 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="RelevantAnswersParser" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="txtParsing.RelevantAnswersParser" />
+      <module name="ir" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="txtParsing.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Searcher" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="App.Searcher" />
       <module name="ir" />
@@ -87,6 +100,7 @@
       <list>
         <item itemvalue="Application.CreateIndex" />
         <item itemvalue="Application.Searcher" />
+        <item itemvalue="Application.RelevantAnswersParser" />
         <item itemvalue="Application.QueryParsing" />
         <item itemvalue="Application.ReaderDemo" />
       </list>
@@ -104,6 +118,10 @@
       <workItem from="1619554405447" duration="3990000" />
       <workItem from="1619627101231" duration="4953000" />
       <workItem from="1619687726607" duration="2733000" />
+      <workItem from="1619726525541" duration="297000" />
+      <workItem from="1619805745179" duration="860000" />
+      <workItem from="1620045006132" duration="2664000" />
+      <workItem from="1620079768452" duration="598000" />
     </task>
     <servers />
   </component>
@@ -114,14 +132,17 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/App/Searcher.java</url>
-          <line>120</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/App/CreateIndex.java</url>
-          <line>70</line>
+          <line>73</line>
           <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/txtParsing/RelevantAnswersParser.java</url>
+          <line>64</line>
+          <properties class="txtParsing.RelevantAnswersParser" method="main">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="10" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

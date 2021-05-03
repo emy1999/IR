@@ -55,16 +55,21 @@ public class Searcher {
             QueryParser parser = new QueryParser(field, analyzer);
 
             System.out.println(" Available queries: ");
-            //List<MyQuery> available_queries = queryParsing("/Users/emiliadan/Downloads/Anaktisi/LISA.QUE");
-            List<MyQuery> available_queries = queryParsing("LISA-Queries/LISA.QUE");
+            List<MyQuery> available_queries = queryParsing("/Users/emiliadan/Downloads/Anaktisi/LISA.QUE");
+            //List<MyQuery> available_queries = queryParsing("LISA-Queries/LISA.QUE");
 
-            int groups[] = {20, 30, 50};
+            int groups[] = {20, 30, 50,0};
 
             for (int n = 0; n < groups.length; n++) {
                 File results_file;
                 FileWriter writer = null;
                 try {
-                    results_file = new File("C:\\Users\\elena\\Desktop\\ir_local2\\src\\our_resultsElena" + "_k=" + groups[n] + ".txt");
+                    if ( n != 3) {
+                        results_file = new File("our_results" + "_k=" + groups[n] + ".test");
+                    }else{
+                        results_file = new File("our_results.test");
+                    }
+                    //results_file = new File("our_results.test");
                     writer = new FileWriter(results_file);
                     if (results_file.createNewFile()) {
                         System.out.println("File created: " + results_file.getName());
@@ -78,7 +83,7 @@ public class Searcher {
                 }
 
                 //This line is not necessary, will be deleted later
-                writer.write("q_id" + "    " + "iter" + "    " + "docno" + "    " + "rank" + "    " + "sim" + "    " + "run_id");
+                //writer.write("q_id" + "    " + "iter" + "    " + "docno" + "    " + "rank" + "    " + "sim" + "    " + "run_id");
 
                 for (int i = 0; i < available_queries.size(); i++) {
                     String query_body = available_queries.get(i).getQuery_body();
@@ -96,20 +101,31 @@ public class Searcher {
 
 
                     //display results
-                    for (int y = 0; y < groups[n]; y++) {
-                        if (y < numTotalHits) { //in case there are not 20 hits
+                    if (n != 3) {
+                        for (int y = 0; y < groups[n]; y++) {
+                            if (y < numTotalHits) { //in case there are not 20 hits
+
+                                Document hitDoc = indexSearcher.doc(hits[y].doc);
+
+                                writer.write(available_queries.get(i).getQuery_id().toString() + "       " + 0 + "       " + hitDoc.get("ID") + "    " + "0" + "    " + hits[y].score + "    " + "Lucene");
+                                System.out.println("\tScore " + hits[y].score + "\tID =" + hitDoc.get("ID"));//+"\tsummary:"+hitDoc.get("summary")+"\tbody:"+hitDoc.get("body"));
+                                writer.write("\n");
+
+                            }
+                        }
+
+                    }else{
+                    for (int y = 0; y < hits.length; y++) {
+
 
                             Document hitDoc = indexSearcher.doc(hits[y].doc);
 
-                            writer.write("\n");
-
                             writer.write(available_queries.get(i).getQuery_id().toString() + "       " + 0 + "       " + hitDoc.get("ID") + "    " + "0" + "    " + hits[y].score + "    " + "Lucene");
                             System.out.println("\tScore " + hits[y].score + "\tID =" + hitDoc.get("ID"));//+"\tsummary:"+hitDoc.get("summary")+"\tbody:"+hitDoc.get("body"));
-
+                            writer.write("\n");
 
                         }
                     }
-
                 }
                 writer.close();
             }
