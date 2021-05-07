@@ -23,18 +23,22 @@ import static App.QueryParsing.queryParsing;
 
 public class Searcher {
 
-    public Searcher() {
+    //String query_path;
+
+    public Searcher(String index_path, String query_path) {
         try {
-            String indexLocation = ("Index"); //define where the index is stored
+            //this.query_path = query_path;
+
+            // String indexLocation = (index_path); //define where the index is stored
             String field = "contents"; //define which field will be searched
 
-            //Access the index using indexReaderFSDirectory.open(Paths.get(index))
-            IndexReader indexReader = DirectoryReader.open(FSDirectory.open(Paths.get(indexLocation))); //IndexReader is an abstract class, providing an interface for accessing an index.
-            IndexSearcher indexSearcher = new IndexSearcher(indexReader); //Creates a searcher searching the provided index, Implements search over a single IndexReader.
+            //Access the index using indexReaderFSDirectory.open(Paths.get(index_path))
+            IndexReader indexReader = DirectoryReader.open(FSDirectory.open(Paths.get(index_path))); //CustomIndexReader is an abstract class, providing an interface for accessing an index.
+            IndexSearcher indexSearcher = new IndexSearcher(indexReader); //Creates a searcher searching the provided index, Implements search over a single CustomIndexReader.
             indexSearcher.setSimilarity(new ClassicSimilarity());
 
             //Search the index using indexSearcher
-            search(indexSearcher, field);
+            search(indexSearcher, field,query_path);
 
             //Close indexReader
             indexReader.close();
@@ -46,7 +50,7 @@ public class Searcher {
     /**
      * Searches the index given a specific user query.
      */
-    private void search(IndexSearcher indexSearcher, String field) {
+    private void search(IndexSearcher indexSearcher, String field, String query_path) {
         try {
             // define which analyzer to use for the normalization of user's query
             Analyzer analyzer = new EnglishAnalyzer();
@@ -55,8 +59,8 @@ public class Searcher {
             QueryParser parser = new QueryParser(field, analyzer);
 
             System.out.println(" Available queries: ");
-            List<MyQuery> available_queries = queryParsing("/Users/emiliadan/Downloads/Anaktisi/LISA.QUE");
-            //List<MyQuery> available_queries = queryParsing("LISA-Queries/LISA.QUE");
+
+            List<MyQuery> available_queries = queryParsing(query_path);
 
             int groups[] = {20, 30, 50,0};
 
@@ -65,9 +69,9 @@ public class Searcher {
                 FileWriter writer = null;
                 try {
                     if ( n != 3) {
-                        results_file = new File("our_results" + "_k=" + groups[n] + ".test");
+                        results_file = new File("our_results" + "_k=" + groups[n] + ".txt");
                     }else{
-                        results_file = new File("our_results.test");
+                        results_file = new File("our_results.txt");
                     }
 
                     writer = new FileWriter(results_file);
@@ -82,7 +86,8 @@ public class Searcher {
                     e.printStackTrace();
                 }
 
-
+                //This line is not necessary, will be deleted later
+                //writer.write("q_id" + "    " + "iter" + "    " + "docno" + "    " + "rank" + "    " + "sim" + "    " + "run_id");
 
                 for (int i = 0; i < available_queries.size(); i++) {
                     String query_body = available_queries.get(i).getQuery_body();
@@ -100,13 +105,13 @@ public class Searcher {
 
 
                     //display results
-                    if (n != 3) { //for all
+                    if (n != 3) {
                         for (int y = 0; y < groups[n]; y++) {
                             if (y < numTotalHits) { //in case there are not 20 hits
 
                                 Document hitDoc = indexSearcher.doc(hits[y].doc);
 
-                                writer.write(available_queries.get(i).getQuery_id().toString() + "       " + 0 + "       " + hitDoc.get("ID") + "    " + "0" + "    " + hits[y].score + "    " + "Lucene");
+                                writer.write(available_queries.get(i).getQuery_id() + "       " + 0 + "       " + hitDoc.get("ID") + "    " + "0" + "    " + hits[y].score + "    " + "Lucene");
                                 System.out.println("\tScore " + hits[y].score + "\tID =" + hitDoc.get("ID"));
                                 writer.write("\n");
 
@@ -119,7 +124,7 @@ public class Searcher {
 
                             Document hitDoc = indexSearcher.doc(hits[y].doc);
 
-                            writer.write(available_queries.get(i).getQuery_id().toString() + "       " + 0 + "       " + hitDoc.get("ID") + "    " + "0" + "    " + hits[y].score + "    " + "Lucene");
+                            writer.write(available_queries.get(i).getQuery_id() + "       " + 0 + "       " + hitDoc.get("ID") + "    " + "0" + "    " + hits[y].score + "    " + "Lucene");
                             System.out.println("\tScore " + hits[y].score + "\tID =" + hitDoc.get("ID"));
                             writer.write("\n");
 
@@ -134,10 +139,4 @@ public class Searcher {
         }
     }
 
-    /**
-     * Initialize a SearcherDemo
-     */
-    public static void main(String[] args) {
-        Searcher searcher = new Searcher();
-    }
 }

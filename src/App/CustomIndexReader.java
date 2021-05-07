@@ -1,25 +1,19 @@
 package App;
 
-// tested for lucene 7.7.2 and jdk13
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
 
 import org.apache.lucene.document.Document;
 import org.apache.lucene.index.CorruptIndexException;
 import org.apache.lucene.index.DirectoryReader;
-import org.apache.lucene.index.IndexReader;
 import org.apache.lucene.store.FSDirectory;
 
-public class Reader {
+public class CustomIndexReader {
 
-    public Reader(){
+    public CustomIndexReader(String index_path){
         try{
-
-            String indexLocation = ("Index"); //define where the index is stored
-
             //Access the index using indexReader
-            IndexReader indexReader = DirectoryReader.open(FSDirectory.open(Paths.get(indexLocation))); //IndexReader is an abstract class, providing an interface for accessing an index.
+            org.apache.lucene.index.IndexReader indexReader = DirectoryReader.open(FSDirectory.open(Paths.get(index_path))); //CustomIndexReader is an abstract class, providing an interface for accessing an index.
 
             //Retrieve all docs in the index using the indexReader
             printIndexDocuments(indexReader);
@@ -32,10 +26,7 @@ public class Reader {
         }
     }
 
-    /**
-     * Retrieves all documents in the index using indexReader
-     */
-    private void printIndexDocuments(IndexReader indexReader){
+    private void printIndexDocuments(org.apache.lucene.index.IndexReader indexReader){
         try {
             System.out.println("--------------------------");
             System.out.println("Documents in the index...");
@@ -51,10 +42,4 @@ public class Reader {
         }
     }
 
-    /**
-     * Initialize a ReaderDemo
-     */
-    public static void main(String[] args){
-        Reader reader = new Reader();
-    }
 }

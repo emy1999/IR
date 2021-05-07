@@ -7,14 +7,16 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class RelevantAnswersParser {
+    public RelevantAnswersParser() {
+    }
 
-    private static void parse_relevant(){
+    public void parse_relevant(String path_to_relevant, String path_to_write){
         try {
             File rel_answers;
             FileWriter writer = null;
             try {
-                //rel_answers = new File("C:\\Users\\elena\\Desktop\\ir_local2\\src\\rel_answers_formatted.txt");
-                rel_answers = new File("rel_results.test");
+                rel_answers = new File(path_to_write+"\\rel_answers_formatted.txt");
+
                 writer = new FileWriter(rel_answers);
                 if (rel_answers.createNewFile()) {
                     System.out.println("File created: " + rel_answers.getName());
@@ -23,8 +25,8 @@ public class RelevantAnswersParser {
                 }
 
 
-                //String txt_file = IO.ReadEntireFileIntoAString("LISA-Relevant/LISARJ.NUM");
-                String txt_file = IO.ReadEntireFileIntoAString("/Users/emiliadan/Downloads/GitLab/ir/LISA-Relevant/LISARJ.NUM");
+                String txt_file = IO.ReadEntireFileIntoAString(path_to_relevant);
+
                 txt_file = txt_file.trim().replaceAll("\\s+", "-");
 
                 String tokens[] = txt_file.split("-");
@@ -60,7 +62,4 @@ public class RelevantAnswersParser {
 
     }
 
-    public static void main (String args[]){
-        parse_relevant();
-    }
 }

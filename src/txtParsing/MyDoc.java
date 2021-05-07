@@ -21,28 +21,17 @@ public class MyDoc {
         return ret + "\n}";
     }
 
-    //---- Getters & Setters definition ----
+    //---- Getters definition ----
     public String getID() {
         return id;
-    }
-
-    public void setID(String title) {
-        this.id = title;
     }
 
     public String getTitle() {
         return title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     public String getBody() {
         return body;
     }
 
-    public void setBody(String body) {
-        this.body = body;
-    }
 }

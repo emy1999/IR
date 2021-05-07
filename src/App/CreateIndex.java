@@ -27,22 +27,16 @@ import txtParsing.*;
 
 public class CreateIndex {
 
-    /**
-     * Configures IndexWriter.
-     * Creates a lucene's inverted index.
-     *
-     */
-    public CreateIndex() throws Exception{
-        //ArrayList<String> files = readFolderContents("LISA-Documents");
-        ArrayList<String> files = readFolderContents("/Users/emiliadan/Downloads/Anaktisi/lisa"); //for emy
 
-        String indexLocation = ("Index"); //define were to store the index
+    public CreateIndex(String documents_folder_path, String index_path) throws Exception{
+
+        ArrayList<String> files = readFolderContents(documents_folder_path);
 
         Date start = new Date();
         try {
-            System.out.println("Indexing to directory '" + indexLocation + "'...");
+            System.out.println("Indexing to directory '" + index_path + "'");
 
-            Directory dir = FSDirectory.open(Paths.get(indexLocation));
+            Directory dir = FSDirectory.open(Paths.get(index_path));
             // define which analyzer to use for the normalization of documents
 
             Analyzer analyzer = new EnglishAnalyzer();
@@ -81,14 +75,7 @@ public class CreateIndex {
 
     }
 
-    /**
-     * Creates a Document by adding Fields in it and
-     * indexes the Document with the IndexWriter
-     *
-     * @param indexWriter the indexWriter that will index Documents
-     * @param mydoc the document to be indexed
-     *
-     */
+
     private void indexDoc(IndexWriter indexWriter, MyDoc mydoc){
 
         try {
@@ -99,10 +86,13 @@ public class CreateIndex {
             // create the fields of the document and add them to the document
             StoredField ID = new StoredField("ID", mydoc.getID());
             doc.add(ID);
+
             StoredField title = new StoredField("title", mydoc.getTitle());
             doc.add(title);
+
             StoredField body = new StoredField("body", mydoc.getBody());
             doc.add(body);
+
             String fullSearchableText = mydoc.getTitle() + " " + mydoc.getBody();
             TextField contents = new TextField("contents", fullSearchableText, Field.Store.NO);
             doc.add(contents);
@@ -123,10 +113,7 @@ public class CreateIndex {
         try (DirectoryStream<Path> files = Files.newDirectoryStream(dirPath)) {
             for(Path file: files){
                 if(!file.getFileName().toString().startsWith(".")) {
-                    //txtfiles.add(path + "\\"+file.getFileName().toString());
-                    txtfiles.add(path + "/"+file.getFileName().toString());
-
-
+                    txtfiles.add(path + "\\"+file.getFileName().toString());
                 }
             }
         }
@@ -134,14 +121,6 @@ public class CreateIndex {
             e.printStackTrace();
         }
         return txtfiles;
-    }
-
-    public static void main(String[] args) {
-        try {
-            CreateIndex indexer = new CreateIndex();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
     }
 
 }
