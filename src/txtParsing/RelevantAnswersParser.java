@@ -22,8 +22,6 @@ public class RelevantAnswersParser {
                     System.out.println("File already exists.");
                 }
 
-                //This line is not necessary, will be deleted later
-                //writer.write("q_id"+"    "+"iter"+"    "+"docno"+"    "+"relevance");
 
                 //String txt_file = IO.ReadEntireFileIntoAString("LISA-Relevant/LISARJ.NUM");
                 String txt_file = IO.ReadEntireFileIntoAString("/Users/emiliadan/Downloads/GitLab/ir/LISA-Relevant/LISARJ.NUM");

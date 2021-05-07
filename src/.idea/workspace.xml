@@ -30,7 +30,7 @@
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
   </component>
-  <component name="RunManager" selected="Application.Searcher">
+  <component name="RunManager" selected="Application.CreateIndex">
     <configuration name="CreateIndex" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="App.CreateIndex" />
       <module name="ir" />
@@ -96,10 +96,21 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Searcher" />
         <item itemvalue="Application.CreateIndex" />
+        <item itemvalue="Application.Searcher" />
         <item itemvalue="Application.RelevantAnswersParser" />
         <item itemvalue="Application.QueryParsing" />
         <item itemvalue="Application.ReaderDemo" />
@@ -121,7 +132,9 @@
       <workItem from="1619726525541" duration="297000" />
       <workItem from="1619805745179" duration="860000" />
       <workItem from="1620045006132" duration="2664000" />
-      <workItem from="1620079768452" duration="598000" />
+      <workItem from="1620079768452" duration="1102000" />
+      <workItem from="1620336287175" duration="1167000" />
+      <workItem from="1620385961387" duration="2073000" />
     </task>
     <servers />
   </component>
@@ -138,7 +151,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/txtParsing/RelevantAnswersParser.java</url>
-          <line>64</line>
+          <line>62</line>
           <properties class="txtParsing.RelevantAnswersParser" method="main">
             <option name="EMULATED" value="true" />
           </properties>

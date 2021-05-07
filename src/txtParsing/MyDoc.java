@@ -28,7 +28,7 @@ public class MyDoc {
 
     public void setID(String title) {
         this.id = title;
-    } //xreiazetai kapou?
+    }
 
     public String getTitle() {
         return title;
@@ -36,7 +36,7 @@ public class MyDoc {
 
     public void setTitle(String title) {
         this.title = title;
-    } //xreiazetai kapou?
+    }
 
     public String getBody() {
         return body;
@@ -44,5 +44,5 @@ public class MyDoc {
 
     public void setBody(String body) {
         this.body = body;
-    } //xreiazetai kapou?
+    }
 }

@@ -69,7 +69,7 @@ public class Searcher {
                     }else{
                         results_file = new File("our_results.test");
                     }
-                    //results_file = new File("our_results.test");
+
                     writer = new FileWriter(results_file);
                     if (results_file.createNewFile()) {
                         System.out.println("File created: " + results_file.getName());
@@ -82,8 +82,7 @@ public class Searcher {
                     e.printStackTrace();
                 }
 
-                //This line is not necessary, will be deleted later
-                //writer.write("q_id" + "    " + "iter" + "    " + "docno" + "    " + "rank" + "    " + "sim" + "    " + "run_id");
+
 
                 for (int i = 0; i < available_queries.size(); i++) {
                     String query_body = available_queries.get(i).getQuery_body();
@@ -101,14 +100,14 @@ public class Searcher {
 
 
                     //display results
-                    if (n != 3) {
+                    if (n != 3) { //for all
                         for (int y = 0; y < groups[n]; y++) {
                             if (y < numTotalHits) { //in case there are not 20 hits
 
                                 Document hitDoc = indexSearcher.doc(hits[y].doc);
 
                                 writer.write(available_queries.get(i).getQuery_id().toString() + "       " + 0 + "       " + hitDoc.get("ID") + "    " + "0" + "    " + hits[y].score + "    " + "Lucene");
-                                System.out.println("\tScore " + hits[y].score + "\tID =" + hitDoc.get("ID"));//+"\tsummary:"+hitDoc.get("summary")+"\tbody:"+hitDoc.get("body"));
+                                System.out.println("\tScore " + hits[y].score + "\tID =" + hitDoc.get("ID"));
                                 writer.write("\n");
 
                             }
@@ -121,7 +120,7 @@ public class Searcher {
                             Document hitDoc = indexSearcher.doc(hits[y].doc);
 
                             writer.write(available_queries.get(i).getQuery_id().toString() + "       " + 0 + "       " + hitDoc.get("ID") + "    " + "0" + "    " + hits[y].score + "    " + "Lucene");
-                            System.out.println("\tScore " + hits[y].score + "\tID =" + hitDoc.get("ID"));//+"\tsummary:"+hitDoc.get("summary")+"\tbody:"+hitDoc.get("body"));
+                            System.out.println("\tScore " + hits[y].score + "\tID =" + hitDoc.get("ID"));
                             writer.write("\n");
 
                         }

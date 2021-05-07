@@ -97,13 +97,13 @@ public class CreateIndex {
             Document doc = new Document();
 
             // create the fields of the document and add them to the document
-            StoredField ID = new StoredField("ID", mydoc.getID());  //changed these
+            StoredField ID = new StoredField("ID", mydoc.getID());
             doc.add(ID);
-            StoredField title = new StoredField("title", mydoc.getTitle());  //changed these
+            StoredField title = new StoredField("title", mydoc.getTitle());
             doc.add(title);
-            StoredField body = new StoredField("body", mydoc.getBody());  //changed these
+            StoredField body = new StoredField("body", mydoc.getBody());
             doc.add(body);
-            String fullSearchableText = mydoc.getTitle() + " " + mydoc.getBody(); //removed "mydoc.getID()" gia na min xrisimopoiei kai to ID otan kane search
+            String fullSearchableText = mydoc.getTitle() + " " + mydoc.getBody();
             TextField contents = new TextField("contents", fullSearchableText, Field.Store.NO);
             doc.add(contents);
 
@@ -124,7 +124,7 @@ public class CreateIndex {
             for(Path file: files){
                 if(!file.getFileName().toString().startsWith(".")) {
                     //txtfiles.add(path + "\\"+file.getFileName().toString());
-                    txtfiles.add(path + "/"+file.getFileName().toString()); //for emy
+                    txtfiles.add(path + "/"+file.getFileName().toString());
 
 
                 }
