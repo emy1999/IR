@@ -96,13 +96,15 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="class" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -146,13 +148,13 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/App/CreateIndex.java</url>
-          <line>73</line>
+          <line>67</line>
           <option name="timeStamp" value="9" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/txtParsing/RelevantAnswersParser.java</url>
-          <line>62</line>
-          <properties class="txtParsing.RelevantAnswersParser" method="main">
+          <line>64</line>
+          <properties class="txtParsing.RelevantAnswersParser">
             <option name="EMULATED" value="true" />
           </properties>
           <option name="timeStamp" value="10" />

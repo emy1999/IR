@@ -27,7 +27,7 @@ public class Searcher {
 
     public Searcher(String index_path, String query_path) {
         try {
-            //this.query_path = query_path;
+
 
             // String indexLocation = (index_path); //define where the index is stored
             String field = "contents"; //define which field will be searched
@@ -86,8 +86,6 @@ public class Searcher {
                     e.printStackTrace();
                 }
 
-                //This line is not necessary, will be deleted later
-                //writer.write("q_id" + "    " + "iter" + "    " + "docno" + "    " + "rank" + "    " + "sim" + "    " + "run_id");
 
                 for (int i = 0; i < available_queries.size(); i++) {
                     String query_body = available_queries.get(i).getQuery_body();
@@ -118,7 +116,7 @@ public class Searcher {
                             }
                         }
 
-                    }else{
+                    }else{ // if n = 3 then create a file wtih all the results for each query
                     for (int y = 0; y < hits.length; y++) {
 
 

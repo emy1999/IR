@@ -15,7 +15,7 @@ public class RelevantAnswersParser {
             File rel_answers;
             FileWriter writer = null;
             try {
-                rel_answers = new File(path_to_write+"\\rel_answers_formatted.txt");
+                rel_answers = new File(path_to_write+"\\rel_results.test");
 
                 writer = new FileWriter(rel_answers);
                 if (rel_answers.createNewFile()) {
