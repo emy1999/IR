@@ -21,7 +21,7 @@ public class MainApp {
         System.out.println("Insert the path to the file \"LISARJ.NUM\" (and press enter):");
         String relevant_path = input.nextLine();
 
-        System.out.println("Insert folder's path where you want to store the formatted relevant answers .txt file (and press enter):");
+        System.out.println("Insert folder's path where you want to store the formatted relevant answers .test file (and press enter):");
         String answers_formatted = input.nextLine();
 
         try {

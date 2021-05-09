@@ -23,16 +23,16 @@ public class TXTParsing {
                     String[] adoc = new String[3];
 
 
-                    int title_end = doc.indexOf("\r\n");
+                    int id_end = doc.indexOf("\r\n");
 
-                    adoc[0] = doc.substring(8, title_end);
+                    adoc[0] = doc.substring(8, id_end);
 
-                    int summary_start = title_end + 2;
+                    int title_start = id_end + 2;
 
-                    int summary_end = doc.indexOf(".", summary_start);
-                    adoc[1] = doc.substring(summary_start, summary_end+1);
+                    int title_end = doc.indexOf(".", title_start);
+                    adoc[1] = doc.substring(title_start, title_end+1);
 
-                    int body_start = summary_end+1;
+                    int body_start = title_end+1;
                     while (isWhitespace(doc.charAt(body_start))){
                         body_start++;
                     }

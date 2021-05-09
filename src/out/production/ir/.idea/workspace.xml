@@ -30,7 +30,7 @@
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
   </component>
-  <component name="RunManager" selected="Application.CreateIndex">
+  <component name="RunManager" selected="Application.MainApp">
     <configuration name="CreateIndex" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="App.CreateIndex" />
       <module name="ir" />
@@ -44,8 +44,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="QueryParsing" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="App.QueryParsing" />
+    <configuration name="MainApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="App.MainApp" />
       <module name="ir" />
       <extension name="coverage">
         <pattern>
@@ -57,8 +57,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ReaderDemo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="App.ReaderDemo" />
+    <configuration name="QueryParsing" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="App.QueryParsing" />
       <module name="ir" />
       <extension name="coverage">
         <pattern>
@@ -96,13 +96,24 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.MainApp" />
         <item itemvalue="Application.CreateIndex" />
         <item itemvalue="Application.Searcher" />
         <item itemvalue="Application.RelevantAnswersParser" />
         <item itemvalue="Application.QueryParsing" />
-        <item itemvalue="Application.ReaderDemo" />
       </list>
     </recent_temporary>
   </component>
@@ -123,6 +134,8 @@
       <workItem from="1620045006132" duration="2664000" />
       <workItem from="1620079768452" duration="1102000" />
       <workItem from="1620336287175" duration="1167000" />
+      <workItem from="1620385961387" duration="2073000" />
+      <workItem from="1620559899316" duration="503000" />
     </task>
     <servers />
   </component>
@@ -134,13 +147,13 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/App/CreateIndex.java</url>
-          <line>73</line>
+          <line>67</line>
           <option name="timeStamp" value="9" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/txtParsing/RelevantAnswersParser.java</url>
           <line>64</line>
-          <properties class="txtParsing.RelevantAnswersParser" method="main">
+          <properties class="txtParsing.RelevantAnswersParser">
             <option name="EMULATED" value="true" />
           </properties>
           <option name="timeStamp" value="10" />
