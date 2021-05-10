@@ -99,7 +99,7 @@ public class CreateIndex {
 
             if (indexWriter.getConfig().getOpenMode() == OpenMode.CREATE) {
                 // New index, so we just add the document (no old document can be there):
-                System.out.println("adding " + mydoc);
+                //System.out.println("adding " + mydoc);
                 indexWriter.addDocument(doc);
             }
         } catch(Exception e){
@@ -113,7 +113,8 @@ public class CreateIndex {
         try (DirectoryStream<Path> files = Files.newDirectoryStream(dirPath)) {
             for(Path file: files){
                 if(!file.getFileName().toString().startsWith(".")) {
-                    txtfiles.add(path + "\\"+file.getFileName().toString());
+                    //txtfiles.add(path + "\\"+file.getFileName().toString()); for Windows
+                    txtfiles.add(path + "/"+file.getFileName().toString()); //for mac
                 }
             }
         }

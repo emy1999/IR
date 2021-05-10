@@ -23,13 +23,9 @@ import static App.QueryParsing.queryParsing;
 
 public class Searcher {
 
-    //String query_path;
-
     public Searcher(String index_path, String query_path) {
         try {
 
-
-            // String indexLocation = (index_path); //define where the index is stored
             String field = "contents"; //define which field will be searched
 
             //Access the index using indexReaderFSDirectory.open(Paths.get(index_path))
@@ -69,9 +65,9 @@ public class Searcher {
                 FileWriter writer = null;
                 try {
                     if ( n != 3) {
-                        results_file = new File("our_results" + "_k=" + groups[n] + ".txt");
+                        results_file = new File("our_results" + "_k=" + groups[n] + ".test");
                     }else{
-                        results_file = new File("our_results.txt");
+                        results_file = new File("our_results.test");
                     }
 
                     writer = new FileWriter(results_file);
@@ -116,7 +112,7 @@ public class Searcher {
                             }
                         }
 
-                    }else{ // if n = 3 then create a file wtih all the results for each query
+                    }else{ // if n = 3 then create a file with all the results for each query
                     for (int y = 0; y < hits.length; y++) {
 
 

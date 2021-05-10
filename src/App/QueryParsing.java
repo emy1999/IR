@@ -32,7 +32,7 @@ public class QueryParsing {
                 parsed_queries.add(query);
 
             }
-            System.out.println(parsed_queries);
+            //System.out.println(parsed_queries);
 
             return parsed_queries;
 

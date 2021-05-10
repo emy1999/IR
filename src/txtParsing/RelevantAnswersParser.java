@@ -15,7 +15,7 @@ public class RelevantAnswersParser {
             File rel_answers;
             FileWriter writer = null;
             try {
-                rel_answers = new File(path_to_write+"\\rel_results.test");
+                rel_answers = new File(path_to_write+"/rel_results.test");
 
                 writer = new FileWriter(rel_answers);
                 if (rel_answers.createNewFile()) {
@@ -31,8 +31,7 @@ public class RelevantAnswersParser {
 
                 String tokens[] = txt_file.split("-");
 
-                System.out.println(txt_file);
-                System.out.println(txt_file.length());
+
 
                 int i = 0;
                 while (i != tokens.length) {

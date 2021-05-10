@@ -1,3 +1,0 @@
-# IR
-
-Information Retrevial
